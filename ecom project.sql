@@ -156,8 +156,8 @@ JOIN order_details d ON o.Order_ID = d.Order_ID
 GROUP BY o.Customer_Name
 )
 SELECT Customer_Name,total_sales,total_profit,
-CASE WHEN total_profit > 1000 THEN 'High Value'
-WHEN total_profit BETWEEN 0 AND 10000 THEN 'Moderate Value'
+CASE WHEN total_profit > 200 THEN 'High Value'
+WHEN total_profit BETWEEN 0 AND 200 THEN 'Moderate Value'
 ELSE 'Loss Making'END AS customer_segment
 FROM customer_perf
 ORDER BY total_profit DESC;
@@ -194,4 +194,5 @@ JOIN category_avg c ON d.Category = c.Category
 GROUP BY d.Sub_Category, d.Category, c.avg_profit
 HAVING SUM(d.Profit) < c.avg_profit
 ORDER BY sub_total_profit ASC;
+
 
